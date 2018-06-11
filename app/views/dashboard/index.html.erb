@@ -1,0 +1,161 @@
+
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
+<% if flash[:notice] %>
+<p style="color: green;"><%= flash[:notice] %></p>
+<% end %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>DiaFit</title>
+    <%= include_gon %>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+     <!-- animate css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+
+      // get the data using the API Call
+      getData();
+      // This creates the drop down menu with the patients.
+      createMenu();
+    </script>
+
+  </head>
+
+  <body>
+  <!--  -->
+  <div id="chart_div"></div>
+      <!--  -->
+    <div class="container ">
+      <div class="row">
+    <br><br><br><br>
+      <div>
+      <img src="https://cdn4.iconfinder.com/data/icons/medical-and-health-2/128/Medical_heart_rate-256.png" width=100px height = auto></div>
+      <div>
+        <h1 class="heading">
+        <div class="animated fadeInLeft">DIAFIT</div>
+        <div class="animated fadeInRight">PATIENTS</div>
+        </h1>
+        <p class="animated fadeInUp headDetail">MONITORING</p>
+      <!-- <h1 class="headerCenter">DiaFit patients monitoring</h1>  -->
+      </div>
+    <br><br>
+      <input value="Download user data" type="button" onClick="download()" class="button-three">
+    <br><br>
+        <div id="menu" class= "center" >
+            <h4 class="white">Please Select Patient:</h4>
+
+            <div id="mainselection" class="styled-select selectCenter">
+              <select id="participants-menu" onchange="update_graphs()"></select>
+            </div>
+
+            </div>
+
+             <h2 class="white">Patient Information:</h2>
+
+            <div>
+              <h3>
+               <div class="tbl-header">
+                <table cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                  <tr id="white">
+                    <th class="center">Age </th>
+                    <th class="center">Gender </th>
+                    <th class="center">Height </th>
+                    <th class="center">Weight </th>
+                    <th class="center">Race </th>
+                    <th class="center">Parents diabetics </th>
+                  </tr>
+                 </thead>
+                </table>
+                </div>
+              <div class="tbl-content" id="dvData">
+                 <table cellpadding="0" cellspacing="0" border="0">
+                  <tbody>
+                   <tr>
+                    <td><label id="age">N/A</label> </td>
+                    <td><label id="gender">N/A</label></td>
+                    <td><label id="height">N/A</label> </td>
+                    <td><label id="weight">N/A</label> </td>
+                    <td><label id="race">N/A</label> </td>
+                    <td><label id="familyHistory">N/A</label> </td>
+                   </tr>
+                  </tbody>
+                </table>
+              </div>
+                <br/>
+              </h3>
+              </div>
+
+              <div class="center">
+                <h2 class="white">Medications</h2><br>
+              </div>
+
+              <div>
+                <h4>
+                <div class="tbl-header">
+                  <table cellpadding="0" cellspacing="0" border="0">
+                   <thead>
+                    <tr id="white">
+                      <th style="text-align: center;">Medicine: </th>
+                      <th style="text-align: center;">Dose: </th>
+                    </tr>
+                   </thead>
+                  </table>
+                </div>
+
+                <div class="med-content">
+               <table cellpadding="0" cellspacing="0" border="0" id ="meds-table" class = "meds-table">
+
+               </table>
+               </div>
+              </h4>
+              </div>
+            </div>
+            <div class="center">
+              <h2 class="white">Glucose levels vs Activity</h2><br>
+            </div>
+            <div id="gluLabels"></div>
+
+            <div id="content">
+              <div class="demo-container">
+                <div id="glucose-activity" class="demo-placeholder"></div>
+              </div>    
+              <br>
+
+              <div class="center">
+                <h2 class="white">Nutrition Information</h2><br>
+              </div>
+              <div id="nuLabel"></div>
+              <div class="demo-container">
+                <div id="nutrition" class="demo-placeholder"></div>
+              </div>
+            </div>
+            <div class="center">
+              <form class="message-form">
+                <fieldset>
+                  <h2 class="white">Compose Message: </h2><br> 
+                    <div  align="center">
+                        <textarea name="message" id="TextArea" ng-model="loremIpsum"  placeholder="Write something to the patients here"></textarea>
+                    </div>
+                  <input class="btn green" type="submit" value="Send Message"><br><br><br><br>
+                </fieldset>
+              </form>
+            </div>
+   <footer>
+        <h4 class="white">Copyright © 2017 mHealth</h4>
+      </footer>
+      <!--row end-->
+      </div>
+   
+    <!--container end-->
+    </div>
+
+
+  </body>
+</html>

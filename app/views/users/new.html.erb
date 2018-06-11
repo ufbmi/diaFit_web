@@ -1,0 +1,18 @@
+
+<div class="container">
+<%= form_for(@user) do |f| %>	
+
+	<h1>Welcome</h1> 
+  	Email 
+  	<br> <%= f.text_field :email, :class => 'loginInput'  %>
+  	<br>
+  Password:
+  <br> <%= f.password_field :password, :class => 'loginInput'  %>
+  <br>
+  <%= f.submit "Submit", :class => 'loginButton' %>
+  </div>
+  </div>
+  </div>
+<% end %>
+
+ 
